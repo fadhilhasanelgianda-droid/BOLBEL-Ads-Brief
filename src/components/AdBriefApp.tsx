@@ -25,6 +25,7 @@ import {
   Video,
   Film
 } from "lucide-react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -159,7 +160,7 @@ const StepContainer = ({
       {step > 1 && step < 12 && (
         <button
           onClick={prevStep}
-          className="flex items-center gap-2 text-zinc-500 hover:text-[#B01B34] transition-colors font-medium"
+          className="flex items-center gap-2 text-zinc-500 hover:text-brand transition-colors font-medium"
         >
           <ChevronLeft size={20} /> Back
         </button>
@@ -179,7 +180,7 @@ const StepContainer = ({
             (step === 9 && !data.imageRatio) ||
             (step === 10 && data.type !== "ab_testing" && !data.cta)
           }
-          className="bg-[#B01B34] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#8E152A] transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-red-100"
+          className="bg-brand text-white px-8 py-3 rounded-xl font-semibold hover:bg-brand-dark transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 shadow-lg shadow-brand-100"
         >
           Next <ChevronRight size={20} />
         </button>
@@ -188,7 +189,7 @@ const StepContainer = ({
         <button
           onClick={handleGenerate}
           disabled={isGenerating}
-          className="bg-[#B01B34] text-white px-8 py-3 rounded-xl font-semibold hover:bg-[#8E152A] transition-all flex items-center gap-2 shadow-lg shadow-red-100"
+          className="bg-brand text-white px-8 py-3 rounded-xl font-semibold hover:bg-brand-dark transition-all flex items-center gap-2 shadow-lg shadow-brand-100"
         >
           {isGenerating ? (
             <>
@@ -522,15 +523,16 @@ export default function App() {
       <header className="border-b border-zinc-100 bg-white/80 backdrop-blur-md sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3 cursor-pointer" onClick={reset}>
-            <div className="w-8 h-8 bg-[#B01B34] rounded-lg flex items-center justify-center text-white font-bold text-xl">B</div>
-            <h1 className="font-bold text-xl tracking-tight text-[#B01B34]">AdBrief <span className="text-[#B01B34]/80">by Boleh Belajar</span></h1>
+            <Image src="/logo-bolehbelajar.png" alt="Boleh Belajar" width={679} height={172} priority className="h-8 w-auto" />
+            <div className="h-6 w-px bg-zinc-200" />
+            <h1 className="font-bold text-xl tracking-tight text-brand">AdBrief</h1>
           </div>
           <div className="flex items-center gap-4 text-sm font-medium text-zinc-500">
-            <span className={step >= 1 ? "text-[#B01B34]" : ""}>Setup</span>
+            <span className={step >= 1 ? "text-brand" : ""}>Setup</span>
             <ChevronRight size={14} />
-            <span className={step >= 5 ? "text-[#B01B34]" : ""}>Content</span>
+            <span className={step >= 5 ? "text-brand" : ""}>Content</span>
             <ChevronRight size={14} />
-            <span className={step >= 12 ? "text-[#B01B34]" : ""}>Results</span>
+            <span className={step >= 12 ? "text-brand" : ""}>Results</span>
           </div>
         </div>
       </header>
@@ -564,26 +566,26 @@ export default function App() {
                   }}
                   className={`p-6 rounded-2xl border-2 text-left transition-all group flex flex-col justify-between ${
                     data.type === "image" 
-                      ? "border-[#B01B34] bg-[#FDF2F4] shadow-md shadow-red-100/50" 
-                      : "border-zinc-100 bg-white hover:border-red-200 hover:shadow-sm"
+                      ? "border-brand bg-brand-50 shadow-md shadow-brand-100/50" 
+                      : "border-zinc-100 bg-white hover:border-brand-200 hover:shadow-sm"
                   }`}
                 >
                   <div>
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
                       data.type === "image" 
-                        ? "bg-[#B01B34] text-white" 
-                        : "bg-zinc-100 text-zinc-500 group-hover:bg-red-50 group-hover:text-[#B01B34]"
+                        ? "bg-brand text-white" 
+                        : "bg-zinc-100 text-zinc-500 group-hover:bg-brand-50 group-hover:text-brand"
                     }`}>
                       <ImageIcon size={24} />
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="font-bold text-lg text-zinc-900">Image</h3>
-                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-red-50 group-hover:text-[#B01B34]">Gambar</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-brand-50 group-hover:text-brand">Gambar</span>
                     </div>
-                    <p className="text-xs font-semibold text-[#B01B34] mb-2">Static Image & Carousel</p>
+                    <p className="text-xs font-semibold text-brand mb-2">Static Image & Carousel</p>
                     <p className="text-sm text-zinc-500 leading-relaxed">Desain banner iklan kreatif lengkap dengan teks overlay, hierarki visual, & AI image prompt.</p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-medium text-zinc-400 group-hover:text-[#B01B34]">
+                  <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-medium text-zinc-400 group-hover:text-brand">
                     <span>Single / Carousel</span>
                     <ChevronRight size={16} />
                   </div>
@@ -603,26 +605,26 @@ export default function App() {
                   }}
                   className={`p-6 rounded-2xl border-2 text-left transition-all group flex flex-col justify-between ${
                     data.type === "video" 
-                      ? "border-[#B01B34] bg-[#FDF2F4] shadow-md shadow-red-100/50" 
-                      : "border-zinc-100 bg-white hover:border-red-200 hover:shadow-sm"
+                      ? "border-brand bg-brand-50 shadow-md shadow-brand-100/50" 
+                      : "border-zinc-100 bg-white hover:border-brand-200 hover:shadow-sm"
                   }`}
                 >
                   <div>
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
                       data.type === "video" 
-                        ? "bg-[#B01B34] text-white" 
-                        : "bg-zinc-100 text-zinc-500 group-hover:bg-red-50 group-hover:text-[#B01B34]"
+                        ? "bg-brand text-white" 
+                        : "bg-zinc-100 text-zinc-500 group-hover:bg-brand-50 group-hover:text-brand"
                     }`}>
                       <Video size={24} />
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="font-bold text-lg text-zinc-900">Video</h3>
-                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-red-50 group-hover:text-[#B01B34]">Video Ad</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-brand-50 group-hover:text-brand">Video Ad</span>
                     </div>
-                    <p className="text-xs font-semibold text-[#B01B34] mb-2">Reels, TikTok & Feeds</p>
+                    <p className="text-xs font-semibold text-brand mb-2">Reels, TikTok & Feeds</p>
                     <p className="text-sm text-zinc-500 leading-relaxed">Konsep video dengan hook 3 detik, storyboard per adegan, on-screen text, & skrip voiceover.</p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-medium text-zinc-400 group-hover:text-[#B01B34]">
+                  <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-medium text-zinc-400 group-hover:text-brand">
                     <span>Storyboard & Skrip</span>
                     <ChevronRight size={16} />
                   </div>
@@ -641,26 +643,26 @@ export default function App() {
                   }}
                   className={`p-6 rounded-2xl border-2 text-left transition-all group flex flex-col justify-between ${
                     data.type === "ab_testing" 
-                      ? "border-[#B01B34] bg-[#FDF2F4] shadow-md shadow-red-100/50" 
-                      : "border-zinc-100 bg-white hover:border-red-200 hover:shadow-sm"
+                      ? "border-brand bg-brand-50 shadow-md shadow-brand-100/50" 
+                      : "border-zinc-100 bg-white hover:border-brand-200 hover:shadow-sm"
                   }`}
                 >
                   <div>
                     <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-colors ${
                       data.type === "ab_testing" 
-                        ? "bg-[#B01B34] text-white" 
-                        : "bg-zinc-100 text-zinc-500 group-hover:bg-red-50 group-hover:text-[#B01B34]"
+                        ? "bg-brand text-white" 
+                        : "bg-zinc-100 text-zinc-500 group-hover:bg-brand-50 group-hover:text-brand"
                     }`}>
                       <Layers size={24} />
                     </div>
                     <div className="flex items-center justify-between mb-1">
                       <h3 className="font-bold text-lg text-zinc-900">A/B Testing</h3>
-                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-red-50 group-hover:text-[#B01B34]">Testing</span>
+                      <span className="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 group-hover:bg-brand-50 group-hover:text-brand">Testing</span>
                     </div>
-                    <p className="text-xs font-semibold text-[#B01B34] mb-2">Multi-Variable Test</p>
+                    <p className="text-xs font-semibold text-brand mb-2">Multi-Variable Test</p>
                     <p className="text-sm text-zinc-500 leading-relaxed">Uji variabel format konten, headline, body copy, atau call-to-action untuk menemukan winning ad.</p>
                   </div>
-                  <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-medium text-zinc-400 group-hover:text-[#B01B34]">
+                  <div className="mt-6 pt-4 border-t border-zinc-100 flex items-center justify-between text-xs font-medium text-zinc-400 group-hover:text-brand">
                     <span>3 Variasi terarah</span>
                     <ChevronRight size={16} />
                   </div>
@@ -686,16 +688,16 @@ export default function App() {
                   <button
                     key={obj.id}
                     onClick={() => setData({ ...data, objective: obj.name })}
-                    className={`p-4 rounded-xl border-2 text-left transition-all flex items-center gap-4 ${data.objective === obj.name ? "border-[#B01B34] bg-[#FDF2F4]" : "border-zinc-100 bg-white hover:border-red-200"}`}
+                    className={`p-4 rounded-xl border-2 text-left transition-all flex items-center gap-4 ${data.objective === obj.name ? "border-brand bg-brand-50" : "border-zinc-100 bg-white hover:border-brand-200"}`}
                   >
-                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${data.objective === obj.name ? "bg-[#B01B34] text-white" : "bg-zinc-100 text-zinc-500"}`}>
+                    <div className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 ${data.objective === obj.name ? "bg-brand text-white" : "bg-zinc-100 text-zinc-500"}`}>
                       <Target size={20} />
                     </div>
                     <div>
                       <h4 className="font-bold text-sm">{obj.name}</h4>
                       <p className="text-xs text-zinc-500">{obj.description}</p>
                     </div>
-                    {data.objective === obj.name && <CheckCircle2 size={20} className="ml-auto text-[#B01B34]" />}
+                    {data.objective === obj.name && <CheckCircle2 size={20} className="ml-auto text-brand" />}
                   </button>
                 ))}
               </div>
@@ -731,13 +733,13 @@ export default function App() {
                       }}
                       className={`p-4 rounded-xl border-2 text-left transition-all flex items-center gap-3 ${
                         isSelected 
-                          ? "border-[#B01B34] bg-[#FDF2F4]" 
-                          : "border-zinc-100 bg-white hover:border-red-200"
+                          ? "border-brand bg-brand-50" 
+                          : "border-zinc-100 bg-white hover:border-brand-200"
                       } ${isDisabled ? "opacity-40 cursor-not-allowed grayscale-[0.5]" : ""}`}
                     >
                       <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${
                         isSelected 
-                          ? "bg-[#B01B34] border-[#B01B34] text-white" 
+                          ? "bg-brand border-brand text-white" 
                           : "border-zinc-300"
                       }`}>
                         {isSelected && <Check size={14} />}
@@ -764,7 +766,7 @@ export default function App() {
             >
               <div className="space-y-6">
                 <div 
-                  className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all ${data.contextFileName ? "border-emerald-200 bg-emerald-50" : "border-zinc-200 bg-white hover:border-[#B01B34]/30"}`}
+                  className={`border-2 border-dashed rounded-2xl p-8 text-center transition-all ${data.contextFileName ? "border-emerald-200 bg-emerald-50" : "border-zinc-200 bg-white hover:border-brand/30"}`}
                   onDragOver={(e) => e.preventDefault()}
                   onDrop={(e) => {
                     e.preventDefault();
@@ -843,7 +845,7 @@ export default function App() {
                     onChange={(e) => setData({ ...data, contextProfileContent: e.target.value })}
                     placeholder="Paste your brand profile, product documentation, or any other context here..."
                     rows={6}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none bg-white"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none bg-white"
                   />
                 </div>
               </div>
@@ -870,7 +872,7 @@ export default function App() {
                     value={data.productName}
                     onChange={(e) => setData({ ...data, productName: e.target.value })}
                     placeholder="e.g. Glowing Skin Serum"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"
                   />
                 </div>
                 <div>
@@ -880,7 +882,7 @@ export default function App() {
                     onChange={(e) => setData({ ...data, usp: e.target.value })}
                     placeholder="What makes your product better than competitors?"
                     rows={2}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"
                   />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -891,7 +893,7 @@ export default function App() {
                       onChange={(e) => setData({ ...data, benefit: e.target.value })}
                       placeholder="What value does the user get?"
                       rows={3}
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"
                     />
                   </div>
                   <div>
@@ -901,7 +903,7 @@ export default function App() {
                       onChange={(e) => setData({ ...data, features: e.target.value })}
                       placeholder="Key technical aspects or specs..."
                       rows={3}
-                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none"
+                      className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"
                     />
                   </div>
                 </div>
@@ -929,7 +931,7 @@ export default function App() {
                     value={data.audience}
                     onChange={(e) => setData({ ...data, audience: e.target.value })}
                     placeholder="e.g. Women aged 25-45 interested in skincare"
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all"
                   />
                 </div>
                 <div>
@@ -939,7 +941,7 @@ export default function App() {
                     onChange={(e) => setData({ ...data, targeting: e.target.value })}
                     placeholder="Interests, behaviors, or demographics..."
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"
                   />
                 </div>
               </div>
@@ -966,7 +968,7 @@ export default function App() {
                     onChange={(e) => setData({ ...data, brandTone: e.target.value })}
                     placeholder="e.g. Professional, witty, empathetic, energetic..."
                     rows={3}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"
                   />
                 </div>
                 <div>
@@ -976,7 +978,7 @@ export default function App() {
                     onChange={(e) => setData({ ...data, previousCopy: e.target.value })}
                     placeholder="Paste your existing ad copy here to help AI replicate your style..."
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-[#B01B34] focus:ring-1 focus:ring-[#B01B34] outline-none transition-all resize-none"
+                    className="w-full px-4 py-3 rounded-xl border border-zinc-200 focus:border-brand focus:ring-1 focus:ring-brand outline-none transition-all resize-none"
                   />
                 </div>
               </div>
@@ -1003,18 +1005,18 @@ export default function App() {
                       onClick={() => setData({ ...data, format: item.name })}
                       className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between ${
                         data.format === item.name 
-                          ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                          : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                          ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                          : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3">
                           <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                            data.format === item.name ? "bg-[#B01B34] text-white" : "bg-zinc-100 text-zinc-500"
+                            data.format === item.name ? "bg-brand text-white" : "bg-zinc-100 text-zinc-500"
                           }`}>
                             <ImageIcon size={20} />
                           </div>
-                          {data.format === item.name && <CheckCircle2 size={20} className="text-[#B01B34]" />}
+                          {data.format === item.name && <CheckCircle2 size={20} className="text-brand" />}
                         </div>
                         <h4 className="font-bold text-base mb-1 text-zinc-900">{item.name}</h4>
                         <p className="text-xs text-zinc-500 leading-relaxed">{item.description}</p>
@@ -1030,18 +1032,18 @@ export default function App() {
                       onClick={() => setData({ ...data, format: item.name })}
                       className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between ${
                         data.format === item.name 
-                          ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                          : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                          ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                          : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                       }`}
                     >
                       <div>
                         <div className="flex items-center justify-between mb-3">
                           <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${
-                            data.format === item.name ? "bg-[#B01B34] text-white" : "bg-zinc-100 text-zinc-500"
+                            data.format === item.name ? "bg-brand text-white" : "bg-zinc-100 text-zinc-500"
                           }`}>
                             <Video size={20} />
                           </div>
-                          {data.format === item.name && <CheckCircle2 size={20} className="text-[#B01B34]" />}
+                          {data.format === item.name && <CheckCircle2 size={20} className="text-brand" />}
                         </div>
                         <h4 className="font-bold text-sm mb-1 text-zinc-900">{item.name}</h4>
                         <p className="text-xs text-zinc-500 leading-relaxed">{item.description}</p>
@@ -1055,9 +1057,9 @@ export default function App() {
                     <button
                       key={f}
                       onClick={() => setData({ ...data, format: f })}
-                      className={`p-4 rounded-xl border-2 text-left transition-all flex items-center gap-3 ${data.format === f ? "border-[#B01B34] bg-[#FDF2F4]" : "border-zinc-100 bg-white hover:border-red-200"}`}
+                      className={`p-4 rounded-xl border-2 text-left transition-all flex items-center gap-3 ${data.format === f ? "border-brand bg-brand-50" : "border-zinc-100 bg-white hover:border-brand-200"}`}
                     >
-                      <Layout size={18} className={data.format === f ? "text-[#B01B34]" : "text-zinc-400"} />
+                      <Layout size={18} className={data.format === f ? "text-brand" : "text-zinc-400"} />
                       <span className="font-medium text-sm">{f}</span>
                     </button>
                   ))}
@@ -1085,8 +1087,8 @@ export default function App() {
                     onClick={() => setData({ ...data, imageRatio: "9:16" })}
                     className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between h-48 ${
                       data.imageRatio === "9:16" 
-                        ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                        : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                        ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                        : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
@@ -1096,13 +1098,13 @@ export default function App() {
                         </div>
                       </div>
                       {data.imageRatio === "9:16" && (
-                        <CheckCircle2 size={20} className="text-[#B01B34]" />
+                        <CheckCircle2 size={20} className="text-brand" />
                       )}
                     </div>
                     <div>
                       <div className="flex items-center gap-1.5 mb-1">
                         <h3 className="font-bold text-sm">9:16 (Vertical)</h3>
-                        <span className="text-[10px] bg-red-100 text-[#B01B34] font-bold px-1.5 py-0.5 rounded">Populer</span>
+                        <span className="text-[10px] bg-brand-accent/10 text-brand-accent font-bold px-1.5 py-0.5 rounded">Populer</span>
                       </div>
                       <p className="text-xs text-zinc-500">Instagram Reels, Stories, TikTok, & Shorts.</p>
                     </div>
@@ -1113,8 +1115,8 @@ export default function App() {
                     onClick={() => setData({ ...data, imageRatio: "4:5" })}
                     className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between h-48 ${
                       data.imageRatio === "4:5" 
-                        ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                        : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                        ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                        : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
@@ -1124,7 +1126,7 @@ export default function App() {
                         </div>
                       </div>
                       {data.imageRatio === "4:5" && (
-                        <CheckCircle2 size={20} className="text-[#B01B34]" />
+                        <CheckCircle2 size={20} className="text-brand" />
                       )}
                     </div>
                     <div>
@@ -1138,8 +1140,8 @@ export default function App() {
                     onClick={() => setData({ ...data, imageRatio: "1:1" })}
                     className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between h-48 ${
                       data.imageRatio === "1:1" 
-                        ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                        : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                        ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                        : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
@@ -1149,7 +1151,7 @@ export default function App() {
                         </div>
                       </div>
                       {data.imageRatio === "1:1" && (
-                        <CheckCircle2 size={20} className="text-[#B01B34]" />
+                        <CheckCircle2 size={20} className="text-brand" />
                       )}
                     </div>
                     <div>
@@ -1165,8 +1167,8 @@ export default function App() {
                     onClick={() => setData({ ...data, imageRatio: "1:1" })}
                     className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between h-44 ${
                       data.imageRatio === "1:1" 
-                        ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                        : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                        ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                        : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
@@ -1176,7 +1178,7 @@ export default function App() {
                         </div>
                       </div>
                       {data.imageRatio === "1:1" && (
-                        <CheckCircle2 size={20} className="text-[#B01B34]" />
+                        <CheckCircle2 size={20} className="text-brand" />
                       )}
                     </div>
                     <div>
@@ -1190,8 +1192,8 @@ export default function App() {
                     onClick={() => setData({ ...data, imageRatio: "4:5" })}
                     className={`p-5 rounded-2xl border-2 text-left transition-all flex flex-col justify-between h-44 ${
                       data.imageRatio === "4:5" 
-                        ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34] shadow-sm" 
-                        : "border-zinc-100 bg-white hover:border-red-200 text-zinc-700"
+                        ? "border-brand bg-brand-50 text-brand shadow-sm" 
+                        : "border-zinc-100 bg-white hover:border-brand-200 text-zinc-700"
                     }`}
                   >
                     <div className="flex items-center justify-between w-full">
@@ -1201,7 +1203,7 @@ export default function App() {
                         </div>
                       </div>
                       {data.imageRatio === "4:5" && (
-                        <CheckCircle2 size={20} className="text-[#B01B34]" />
+                        <CheckCircle2 size={20} className="text-brand" />
                       )}
                     </div>
                     <div>
@@ -1231,7 +1233,7 @@ export default function App() {
                   <button
                     key={cta}
                     onClick={() => setData({ ...data, cta })}
-                    className={`p-3 rounded-xl border-2 text-center transition-all text-sm font-medium ${data.cta === cta ? "border-[#B01B34] bg-[#FDF2F4] text-[#B01B34]" : "border-zinc-100 bg-white hover:border-red-200"}`}
+                    className={`p-3 rounded-xl border-2 text-center transition-all text-sm font-medium ${data.cta === cta ? "border-brand bg-brand-50 text-brand" : "border-zinc-100 bg-white hover:border-brand-200"}`}
                   >
                     {cta}
                   </button>
@@ -1349,15 +1351,15 @@ export default function App() {
                     <button
                       type="button"
                       onClick={() => setData({ ...data, quantity: Math.max(1, data.quantity - 1) })}
-                      className="w-9 h-9 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-red-50 hover:text-[#B01B34] hover:border-[#B01B34] transition-colors"
+                      className="w-9 h-9 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-brand-50 hover:text-brand hover:border-brand transition-colors"
                     >
                       <ChevronLeft size={18} />
                     </button>
-                    <span className="text-2xl font-bold text-[#B01B34] w-8 text-center">{data.quantity}</span>
+                    <span className="text-2xl font-bold text-brand w-8 text-center">{data.quantity}</span>
                     <button
                       type="button"
                       onClick={() => setData({ ...data, quantity: Math.min(5, data.quantity + 1) })}
-                      className="w-9 h-9 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-red-50 hover:text-[#B01B34] hover:border-[#B01B34] transition-colors"
+                      className="w-9 h-9 rounded-full border border-zinc-200 flex items-center justify-center hover:bg-brand-50 hover:text-brand hover:border-brand transition-colors"
                     >
                       <Plus size={18} />
                     </button>
@@ -1388,7 +1390,7 @@ export default function App() {
                   </button>
                   <button
                     onClick={reset}
-                    className="bg-[#B01B34] text-white px-6 py-2 rounded-lg font-semibold hover:bg-[#8E152A] transition-all text-sm"
+                    className="bg-brand text-white px-6 py-2 rounded-lg font-semibold hover:bg-brand-dark transition-all text-sm"
                   >
                     Create New
                   </button>

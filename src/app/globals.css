@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+/* Boleh Belajar brand colors (from Logo BOLEHBELAJAR) */
+@theme {
+  --color-brand: #BC204B;
+  --color-brand-dark: #9A1A3D;
+  --color-brand-50: #FCF4F6;
+  --color-brand-100: #F8E9ED;
+  --color-brand-200: #EEC7D2;
+  --color-brand-accent: #EE5340;
+}
