@@ -1,0 +1,8 @@
+{
+  "name": "Remix AdBrief by Boleh Belajar",
+  "description": "Professional ad content brief generator for Meta Ads, supporting normal and A/B testing formats.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
