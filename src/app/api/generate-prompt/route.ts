@@ -1,7 +1,8 @@
+import Anthropic from "@anthropic-ai/sdk";
 import { NextResponse } from "next/server";
-import { generatePromptWithFallback, getGeminiClient } from "@/lib/gemini";
+import { generatePrompt } from "@/lib/claude";
 
-// Model fallbacks + retries can take a while
+// Long prompts can take a while to generate
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
@@ -11,34 +12,27 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing or invalid prompt string." }, { status: 400 });
     }
 
-    const ai = getGeminiClient();
-    const text = await generatePromptWithFallback(ai, prompt);
+    const text = await generatePrompt(prompt);
 
     return NextResponse.json({ text });
   } catch (error: any) {
-    console.error("Error generating content via Gemini server API:", error);
+    console.error("Error generating content via Claude API:", error);
 
-    let statusCode = 500;
-    if (typeof error?.code === "number" && error.code >= 400 && error.code < 600) {
-      statusCode = error.code;
-    } else if (typeof error?.status === "number" && error.status >= 400 && error.status < 600) {
-      statusCode = error.status;
-    } else if (error?.status === "UNAVAILABLE" || (typeof error?.message === "string" && error.message.includes("503"))) {
-      statusCode = 503;
+    if (error instanceof Anthropic.AuthenticationError) {
+      return NextResponse.json({ error: "API key Claude tidak valid. Cek ANTHROPIC_API_KEY." }, { status: 500 });
+    }
+    if (error instanceof Anthropic.RateLimitError) {
+      return NextResponse.json({ error: "Terlalu banyak permintaan ke AI. Coba lagi sebentar." }, { status: 429 });
+    }
+    if (error instanceof Anthropic.APIError) {
+      // 529 = overloaded; client maps 503 to a friendly "high traffic" message
+      const status = error.status === 529 ? 503 : (error.status ?? 500);
+      return NextResponse.json({ error: error.message }, { status });
     }
 
-    let errorMessage = error?.message || "Failed to generate prompt from Gemini API.";
-    if (typeof errorMessage === "string" && errorMessage.includes('"message":')) {
-      try {
-        const parsed = JSON.parse(errorMessage.replace(/^ApiError:\s*/, ""));
-        if (parsed?.error?.message) {
-          errorMessage = parsed.error.message;
-        }
-      } catch {
-        // use raw error message
-      }
-    }
-
-    return NextResponse.json({ error: errorMessage }, { status: statusCode });
+    return NextResponse.json(
+      { error: error?.message || "Failed to generate prompt from Claude API." },
+      { status: 500 },
+    );
   }
 }

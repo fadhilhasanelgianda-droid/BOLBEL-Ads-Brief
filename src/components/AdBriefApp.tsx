@@ -434,7 +434,7 @@ export default function App() {
       ${data.imageRatio ? `- Rasio Konten (Aspect Ratio): ${data.imageRatio}` : ""}
       ${data.cta ? `- Call to Action Dasar: ${data.cta}` : ""}
 
-      OUTPUT FORMAT INSTRUCTIONS FOR YOU (GEMINI):
+      OUTPUT FORMAT INSTRUCTIONS FOR YOU:
       - Output ONLY the Master Prompt text in Indonesian (Bahasa Indonesia).
       - Do NOT add any introductory or concluding pleasantries (e.g., "Berikut adalah prompt Anda..."). Start immediately with the prompt text itself so it is 100% clean and copy-paste ready.
     `;
